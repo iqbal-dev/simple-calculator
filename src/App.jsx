@@ -8,8 +8,9 @@
 
 import { useState } from "react";
 import shortId from "shortid";
+import InputsSection from "./inputs/InputsSection";
+import OperationSection from "./operations/OperationSection";
 import Button from "./ui/Button";
-import NumberField from "./ui/NumberField";
 function* generateId() {
   let id = 0;
   while (true) {
@@ -66,30 +67,15 @@ function App() {
   return (
     <div style={{ width: "50%", margin: "0 auto" }}>
       <h1>Result:{result}</h1>
-      <div>
-        <p>Inputs</p>
-        <div style={{ display: "flex", gap: "1rem" }}>
-          <NumberField
-            name="a"
-            value={inputState.a}
-            onChange={handleInputChange}
-          />
-          <NumberField
-            name="b"
-            value={inputState.b}
-            onChange={handleInputChange}
-          />
-        </div>
-      </div>
-      <div>
-        <p>operations</p>
-        <Button text="+" onClick={() => handleArithmeticOPs("+")} />
-        <Button text="-" onClick={() => handleArithmeticOPs("-")} />
-        <Button text="*" onClick={() => handleArithmeticOPs("*")} />
-        <Button text="/" onClick={() => handleArithmeticOPs("/")} />
-        <Button text="%" onClick={() => handleArithmeticOPs("%")} />
-        <Button text="clear" onClick={() => handleClearOPs()} />
-      </div>
+      <InputsSection
+        inputState={inputState}
+        handleInputChange={handleInputChange}
+      />
+      <OperationSection
+        handleArithmeticOPs={handleArithmeticOPs}
+        handleClearOPs={handleClearOPs}
+      />
+
       <div>
         <p>history</p>
         <p>
