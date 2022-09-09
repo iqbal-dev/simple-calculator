@@ -8,6 +8,7 @@
 
 import { useState } from "react";
 import shortId from "shortid";
+import Button from "./ui/Button";
 import NumberField from "./ui/NumberField";
 function* generateId() {
   let id = 0;
@@ -67,25 +68,27 @@ function App() {
       <h1>Result:{result}</h1>
       <div>
         <p>Inputs</p>
-        <NumberField
-          name="a"
-          value={inputState.a}
-          onChange={handleInputChange}
-        />
-        <NumberField
-          name="b"
-          value={inputState.b}
-          onChange={handleInputChange}
-        />
+        <div style={{ display: "flex", gap: "1rem" }}>
+          <NumberField
+            name="a"
+            value={inputState.a}
+            onChange={handleInputChange}
+          />
+          <NumberField
+            name="b"
+            value={inputState.b}
+            onChange={handleInputChange}
+          />
+        </div>
       </div>
       <div>
         <p>operations</p>
-        <button onClick={() => handleArithmeticOPs("+")}>+</button>
-        <button onClick={() => handleArithmeticOPs("-")}>-</button>
-        <button onClick={() => handleArithmeticOPs("*")}>*</button>
-        <button onClick={() => handleArithmeticOPs("/")}>/</button>
-        <button onClick={() => handleArithmeticOPs("%")}>%</button>
-        <button onClick={() => handleClearOPs()}>clear</button>
+        <Button text="+" onClick={() => handleArithmeticOPs("+")} />
+        <Button text="-" onClick={() => handleArithmeticOPs("-")} />
+        <Button text="*" onClick={() => handleArithmeticOPs("*")} />
+        <Button text="/" onClick={() => handleArithmeticOPs("/")} />
+        <Button text="%" onClick={() => handleArithmeticOPs("%")} />
+        <Button text="clear" onClick={() => handleClearOPs()} />
       </div>
       <div>
         <p>history</p>
@@ -102,12 +105,11 @@ function App() {
                   </p>
                   <small>{history.date.toLocaleString()}</small>
                   <br />
-                  <button
+                  <Button
+                    text="Restore"
                     onClick={() => handleReStore(history)}
                     disabled={historyId === history.id}
-                  >
-                    Restore
-                  </button>
+                  />
                 </li>
               ))}
             </ul>

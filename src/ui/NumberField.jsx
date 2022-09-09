@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-function NumberField({ name, value, onChange }) {
+const NumberField = ({ name, value, onChange }) => {
   const style = {
     padding: ".25rem",
     border: "1px solid #ccc",
@@ -19,7 +19,7 @@ function NumberField({ name, value, onChange }) {
       onChange={onChange}
     />
   );
-}
+};
 
 NumberField.propTypes = {
   name: PropTypes.string.isRequired,
