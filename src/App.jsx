@@ -8,19 +8,12 @@
 
 import { useState } from "react";
 import shortId from "shortid";
+import History from "./history/History";
 import InputsSection from "./inputs/InputsSection";
 import OperationSection from "./operations/OperationSection";
-import Button from "./ui/Button";
-function* generateId() {
-  let id = 0;
-  while (true) {
-    yield id++;
-  }
-}
-const getId = generateId();
 let initialInputState = {
-  a: 0,
-  b: 0,
+  a: 20,
+  b: 10,
 };
 function App() {
   const [inputState, setInputState] = useState(initialInputState);
@@ -75,33 +68,11 @@ function App() {
         handleArithmeticOPs={handleArithmeticOPs}
         handleClearOPs={handleClearOPs}
       />
-
-      <div>
-        <p>history</p>
-        <p>
-          {histories.length === 0 ? (
-            <small>There is no history</small>
-          ) : (
-            <ul>
-              {histories.map((history) => (
-                <li key={history.id}>
-                  <p>
-                    Operations: {history.inputs.a} {history.operation}{" "}
-                    {history.inputs.b} Result:{history.result}
-                  </p>
-                  <small>{history.date.toLocaleString()}</small>
-                  <br />
-                  <Button
-                    text="Restore"
-                    onClick={() => handleReStore(history)}
-                    disabled={historyId === history.id}
-                  />
-                </li>
-              ))}
-            </ul>
-          )}
-        </p>
-      </div>
+      <History
+        historyId={historyId}
+        histories={histories}
+        handleReStore={handleReStore}
+      />
     </div>
   );
 }
