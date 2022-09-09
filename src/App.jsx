@@ -8,6 +8,7 @@
 
 import { useState } from "react";
 import shortId from "shortid";
+import NumberField from "./ui/NumberField";
 function* generateId() {
   let id = 0;
   while (true) {
@@ -66,14 +67,12 @@ function App() {
       <h1>Result:{result}</h1>
       <div>
         <p>Inputs</p>
-        <input
-          type="number"
+        <NumberField
           name="a"
           value={inputState.a}
           onChange={handleInputChange}
         />
-        <input
-          type="number"
+        <NumberField
           name="b"
           value={inputState.b}
           onChange={handleInputChange}
